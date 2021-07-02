@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, k){
+                let answer;
+                let queue=Array.from({length:n}, (v, i)=>i+1); 
+                // 이렇게 하면 길이가 n인 배열이 생긴다. 각 요소의 값은 인덱스+1이다. 즉 왕자 1부터 8까지.
+                while(queue.length){ // 큐의 길의가 0이 되면 와일문이 멈춘다.
+                    for(let i=1; i<k; i++) queue.push(queue.shift()); // 1번과 2번을 외친 왕자는 빼서 뒤에 다시 넣는다.
+                    queue.shift(); // 3을 외친 왕자는 제거한다.
+                    if(queue.length===1) answer=queue.shift(); // 만약 큐의 길이가 1이면 왕자가 한 명 남은 것이므로 그 값을 answer에 저장한다.
+                }  
+                return answer;
+            }
+
+            console.log(solution(8, 3));
+        </script>
+    </body>
+</html>

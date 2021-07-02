@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer = "";
+                //console.log(s.indexOf('k'));는 k가 나오는 첫번째 인덱스를 찾아준다.
+                //만약 찾는 값이 없으면 -1을 반환한다.
+                for(let i = 0; i < s.length; i++){
+                    //console.log(s[i], i, s.indexOf(s[i]));
+                    //i와 s.indexOf(s[i])가 같지 않은 문자는 전부 중복되는 문자이다.
+                    if(i === s.indexOf(s[i])) answer += s[i];
+                }
+                return answer;
+            }
+            //특정 문자가 한 스트링에 몇번 나오는지도 indexOf를 이용해서 찾을 수 있다.
+            /* function solution(s){
+                let answer=0;
+                let pos = s.indexOf('k');
+                while (pos !== -1){
+                    // k가 있을 때마다 1씩 카운팅된다.
+                    answer++;
+                    pos = s.indexOf('k', pos+1); // 이전 pos의 뒷자리부터 k를 찾는다.
+                }
+                return answer;
+            } */
+            console.log(solution("ksekkset"));
+        </script>
+    </body>
+</html>

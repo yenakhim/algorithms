@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n){
+                let answer="";
+                function DFS(n){
+                     if(n===0) return;
+                     else{
+                         DFS(parseInt(n/2)); //n을 계속 몫으로 바꿔준다.
+                         answer+=String(n%2); //마지막에 한 것부터 출력해야 되니까 재귀함수 아래에 둔다.
+                     }
+                }
+                DFS(n);
+                return answer;
+            }
+
+            console.log(solution(11));
+        </script>
+    </body>
+</html>

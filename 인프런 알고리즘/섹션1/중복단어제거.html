@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer;
+                //console.log(s.indexOf("good")); indexOf는 배열에도 적용 가능하다.
+                answer = s.filter((v, i)=>{
+                    //console.log(v, i);
+                    //filter함수는 특정 조건 하의 값들만 가지고 새로운 배열을 만든다.
+                    //v는 s배열의 값들이고, i는 인덱스이다.
+                    //아래 조건에 맞는 값들만 가지고 새로운 배열을 만들어 answer에 저장한다.
+                    if(s.indexOf(v) === i) return v;
+                });
+                
+                return answer;
+            }
+            let str=["good", "time", "good", "time", "student"];
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer;
+                let stack=[];
+                for(let x of s){
+                    if(!isNaN(x)) stack.push(Number(x)); // 숫자면 스택에 넣어준다.
+                    else{ // 숫자가 아니면 두개를 빼서 rt와 lt에 저장한다.
+                        let rt=stack.pop();
+                        let lt=stack.pop();
+                        if(x==='+') stack.push(lt+rt);
+                        else if(x==='-') stack.push(lt-rt);
+                        else if(x==='*') stack.push(lt*rt);
+                        else if(x==='/') stack.push(lt/rt);
+                    }
+                }
+                answer=stack[0]; // 마지막에 스택에 남아있는 값이 연산결과이다.
+                return answer;
+            }
+
+            let str="352+*9-";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer=arr; //얕은 복사
+                for(let i=0; i<arr.length-1; i++){ //i는 0부터 4까지 돌면 됨. 총 5번.
+                    for(let j=0; j<arr.length-i-1; j++){ //j는 도는 횟수가 i만큼 줄어듦.
+                        if(arr[j]>arr[j+1]){ //왼쪽 값이 오른쪽 값보다 크면
+                            [arr[j], arr[j+1]]=[arr[j+1], arr[j]]; //두 값을 교환해서 가장 큰 값이 맨 뒤에 가게 함
+                        }
+                    }   
+                } 
+                return answer;
+            }
+
+            let arr=[13, 5, 11, 7, 23, 15];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer="";
+                for(let char of s){
+                    if(char === "A") answer += "#";
+                    else answer += char;
+                }
+                return answer;
+            }
+            /* function solution(s){
+                let answer;
+                answer = s.replace(/A/g, '#'); // g를 쓰지 않으면 첫 번째 A만 바뀐다. 바뀐 s는 answer에 저장해주여야 반영된다. 스트링은 참조복사가 아니라 값에 의한 복사이다.
+                return answer;
+            } */
+            
+            let str="BANANA";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

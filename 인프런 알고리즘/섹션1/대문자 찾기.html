@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){         
+                let answer=0;
+                for(let char of s){
+                    if(/[A-Z]/.test(char)) answer++;
+                }
+                return answer;
+            }
+            /* function solution(s){         
+                let answer=0;
+                for(let char of s){
+                    if(char === char.toUpperCase()) answer++;
+                }
+                return answer;
+            } */
+
+            /* function solution(s){         
+                let answer=0;
+                for(let char of s){
+                    let num = char.charCodeAt();
+                    if(num>=65 && num<=90) answer++; // 대문자 아스키 코드는 65부터 90까지, 소문자의 아스키 코드는 97에서 122까지
+                }
+                return answer;
+            } */
+
+            let str="KoreaTimeGood";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>

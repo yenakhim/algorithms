@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function count(songs, capacity){
+                let cnt=1, sum=0; //최소한 1장의 디비디는 필요하기 때문에 1로 초기화한다.
+                for(let x of songs){
+                    if(sum+x > capacity){ //용량보다 값이 크면
+                        cnt++; //새로운 디비디를 추가하고
+                        sum=x; //sum값을 x로 초기화한다.
+                    }
+                    else sum+=x; //용량보다 값이 작거나 같으면, sum에 누적한다.
+                }
+                return cnt;
+            }
+            
+            function solution(m, songs){
+                let answer;
+                let lt=Math.max(...songs); //최소한의 용량
+                let rt=songs.reduce((a, b)=>a+b, 0); //최대한의 용량
+                while(lt<=rt){
+                    let mid=parseInt((lt+rt)/2);
+                    if(count(songs, mid)<=m){ //정해진 디비디 개수보다 작거나 같으면
+                        answer=mid; //answer값에 일단 mid를 저장하고
+                        rt=mid-1; //더 작은 값을 찾기위해 rt를 옮긴다.
+                    }
+                    else{ //정해진 디비디 개수보다 크면
+                        lt=mid+1; //답은 될 수 없다는 것이고 더 큰 수 중에 답을 찾아야 하므로 lt를 위로 옮긴다.
+                    }
+                } 
+                return answer;
+            }
+
+            let arr=[1, 2, 3, 4, 5, 6, 7, 8, 9];
+            console.log(solution(3, arr));
+        </script>
+    </body>
+</html>

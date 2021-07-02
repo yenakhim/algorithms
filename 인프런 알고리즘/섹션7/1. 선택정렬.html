@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer=arr; // 얕은 복사
+                for(let i=0; i<arr.length; i++){
+                    let idx=i; //idx값은 항상 i로 초기화 i부터 다시 가장 작은 수 찾아야 하니까!
+                    for(let j=i+1; j<arr.length; j++){
+                        if(arr[j]<arr[idx]) idx=j; // idx에 가장 작은 수의 인덱스를 저장
+                    }
+                    [arr[i], arr[idx]] = [arr[idx], arr[i]]; // i의 값과 가장 작은 값을 바꿈
+                }
+                return answer;
+            }
+
+            let arr=[13, 5, 11, 7, 23, 15];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

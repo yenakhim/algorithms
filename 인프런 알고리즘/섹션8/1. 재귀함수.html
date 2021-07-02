@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n){
+                function DFS(L){
+                    if(L===0) return; //함수 종료
+                    else{
+                        //console.log(L); 여기 있으면 3 2 1 이 출력됨
+                        DFS(L-1);
+                        console.log(L);
+                    }
+                }
+                DFS(n);
+            }
+
+            solution(3); // 1 2 3
+        </script>
+    </body>
+</html>

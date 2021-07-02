@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function compareMaps(map1, map2){
+                if(map1.size !== map2.size) return false;
+                for(let [key, val] of map1){
+                    if(!map2.has(key) || map2.get(key) !== val) return false;
+                }
+            }
+            
+            function solution(s, t){
+                let answer = 0;
+                let sH = new Map();
+                let tH = new Map();
+
+                for(let char of t){
+                    if(tH.has(char)) tH.set(char, tH.get(char)+1);
+                    else tH.set(char, 1);
+                }
+                let len = t.length;
+                for(let i = 0; i < len-1; i++){
+                    if(sH.has(s[i])) sH.set(s[i], sH.get(s[i])+1);
+                    else sH.set(s[i], 1);
+                }
+                let start = 0;
+                for(let end = len-1; end < s.length; end++){
+                    if(sH.has(s[end])) sH.set(s[end], sH.get(s[end])+1);
+                    else sH.set(s[end], 1);
+                    if(compareMaps(sH, tH)) answer++;
+                    sH.set(s[start], sH.get(s[start])-1);
+                    if(sH.get(s[start]) === 0) sH.delete(s[start]);
+                    start++;
+                }
+                
+                return answer;
+            }
+            
+            let a="bacaAacba";
+            let b="abc";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>

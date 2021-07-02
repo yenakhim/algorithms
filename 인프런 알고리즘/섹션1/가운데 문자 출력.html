@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer;
+                let mid = Math.floor(s.length/2);
+                if(s.length % 2 === 1) answer = s.substring(mid, mid+1);
+                // substring은 첫번째 인수부터 두번째 인수 전까지 산출. 즉, 두가지 인수 모두 인덱스.
+                // substr은 첫번째 인수부터 두번째 인수만큼 산출. 두번째 인수는 산출할 문자의 개수.
+                else answer = s.substring(mid-1, mid+1);
+                return answer;
+            }
+            console.log(solution("study"));
+        </script>
+    </body>
+</html>

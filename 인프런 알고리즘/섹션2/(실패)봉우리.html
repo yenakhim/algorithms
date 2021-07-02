@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){  
+                let answer = 0;
+                let n = arr.length;
+                let rowIdx = [-1, 0, 1, 0];
+                let colIdx = [0, 1, 0, -1];
+
+                for(let i = 0; i < n; i++){
+                    for(let j = 0; j < n; j++){
+                        let flag = 1; // true
+                        for(let k = 0; k < 4; k++){
+                            let rowCom = i + rowIdx[k];
+                            let colCom = j + colIdx[k];
+                            if(rowCom >= 0 && rowCom < n && colCom >= 0 && colCom < n && arr[rowCom][colCom] >= arr[i][j]){
+                                flag = 0; // false
+                                break;
+                            }
+                        }
+                        if(flag) answer++; 
+                        //flag가 1이라는 것은 for문 안의 조건문이 실행되지 않았다는 것을 의미한다.
+                    }
+                }
+                return answer;
+            }
+
+            let arr=[[5, 3, 7, 2, 3], 
+                     [3, 7, 1, 6, 1],//     (1,2)
+                     [7, 2, 5, 3, 4],//(2,1)(2,2)(2,3)
+                     [4, 3, 6, 4, 1],//     (3,2)
+                     [8, 7, 3, 5, 2]];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

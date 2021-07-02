@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function count(stable, dist){
+               let cnt=1, ep=stable[0]; //첫 번째 말은 꼭 맨 앞 자리에 배치하니까 일단 1마리를 카운트하고 마지막 위치가 0번 좌표가 됨.
+               for(let i=1; i<stable.length; i++){
+                   if(stable[i]-ep>=dist){ //다음 좌표와 마지막 말의 위치 사이의 거리가 dist보다 크거나 같으면 새로운 말을 놓을 수 있다는 의미.
+                       cnt++; //말 하나를 더 카운트하고
+                       ep=stable[i]; //이제 마지막 말의 위치를 지금 놓은 말의 좌표로 업데이트함
+                   }
+               }
+               return cnt;
+            }
+            function solution(c, stable){
+                let answer;
+                stable.sort((a, b)=>a-b); //일단 오름차순 정렬
+                let lt=1; //가장 인접한 두 말은 최소한 1만큼은 떨어져 있음
+                let rt=stable[stable.length-1]; //가장 인접한 두 말은 최소한 가장 끝 좌표만큼은 떨어져 있음
+                while(lt<=rt){
+                    let mid=parseInt((lt+rt)/2);
+                    if(count(stable, mid)>=c){ //mid값을 대입했을 때 놓을 수 있는 말이 c마리보다 크거나 같으면 답으로 가능하다는 의미.
+                        answer=mid; //answer에 일단 mid값을 저장하고
+                        lt=mid+1; //더 큰 값을 찾기 위해 lt를 옮김
+                    }
+                    else rt=mid-1; //c마리보다 작으면 답으로 불가능하다는 의미이므로 더 작은 값을 찾아야 함. 그래서 rt를 앞으로 옮김.
+                }
+                return answer;
+            }
+
+            let arr=[1, 2, 8, 4, 9];
+            console.log(solution(3, arr));
+        </script>
+    </body>
+</html>

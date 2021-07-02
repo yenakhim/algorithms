@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(board, moves){
+                let answer=0;
+                let stack=[];
+                moves.forEach(pos => {
+                // moves라는 배열의 요소를 각각 돈다. 요소 이름에 position의 약자를 붙인 것.
+                    for(let i=0; i<board.length; i++){
+                        if(board[i][pos-1]!==0){ // pos는 1-5까지인데 열은 0-4열까지이므로 1을 뺸다. 0이 아니라는 것은 인형이 있다는 것을 의미한다.
+                            let tmp=board[i][pos-1]; // 그 인형 값을 tmp에 저장한다.
+                            board[i][pos-1]=0; // 인형이 있던 자리는 0으로 초기화시킨다.
+                            if(tmp===stack[stack.length-1]){ // 지금 뽑은 인형의 값이 stack의 마지막 인형의 값과 같은지 확인한다. 같다면 스택의 마지막 인형을 pop으로 제거하고 answer에 2를 더한다.(인형 2개가 터졌으니까!)
+                                stack.pop();
+                                answer+=2;
+                            }
+                            else stack.push(tmp); // 만약 지금 뽑은 인형의 값이 스택의 마지막 인형의 값과 같지 않으면, 그냥 그 인형도 스택에 넣는다.
+                            break; // 인형 하나를 뻈으면 더 이상 같은 열의 인형을 빼면 안된다. 그래서 포문을 나가기 위해 break를 추가한다. 꼭!
+                        }
+                    }
+                });
+                                
+                return answer;
+            }
+            
+            let a=[[0,0,0,0,0],
+                   [0,0,1,0,3],
+                   [0,2,5,0,1],
+                   [4,2,4,4,2],
+                   [3,5,1,3,1]];
+
+            let b=[1, 5, 3, 5, 1, 2, 1, 4];
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>

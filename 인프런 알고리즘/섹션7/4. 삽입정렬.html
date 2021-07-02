@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer=arr;
+                for(let i=0; i<arr.length; i++){
+                    let tmp=arr[i], j; //tmp에 arr[i]값을 i가 바뀔때마다 저장해놓음.
+                    for(j=i-1; j>=0; j--){ //j가 도는 범위는 i-1부터 0까지. 즉, 0부터 i 전까지.
+                        if(arr[j]>tmp) arr[j+1]=arr[j]; //tmp값보다 arr[j]값이 크면 그 값을 j+1자리에 복사함
+                        else break; //tmp값보다 arr[j]값이 작으면 바로 포문을 나감.
+                    }
+                    arr[j+1]=tmp; //포문을 나왔을 때의 j값에 1을 더한 인덱스 자리에 tmp값을 넣음.
+                } 
+                return answer;
+            }
+
+            let arr=[11, 7, 5, 6, 10, 9];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let answer=[];
+                answer.push(arr[0]);
+                for(let i=1; i<arr.length; i++){
+                    for(let j=0; j<answer.length; j++){
+                        if(arr[i]<answer[j]){
+                            answer.splice(j, 0, arr[i]);
+                            break;
+                        } 
+                    }
+                }
+                return answer;
+            }
+
+            let arr=[11, 7, 5, 6, 10, 9];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

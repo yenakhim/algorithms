@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(m, product){
+                let answer = 0;
+                let n = product.length;
+                product.sort((a, b)=>((a[0]+a[1])) - (b[0]+b[1]));
+                // a가격합산에서 b가격합산을 뺀 수를 오름차순으로 나열
+                for(let i = 0; i < n; i++){ // 첫번째 상품부터 하나씩 할인 받는다고 가정.
+                    let rest = m - (product[i][0]/2 + product[i][1]); // 할인받음
+                    let count = 1; // 할인 받은 상품 1개 샀음
+                    for(let j = 0; j < n; j++){
+                        if(j !== i && (product[j][0] + product[j][1]) > rest) break;
+                        // 살 상품 가격이 남은 예산보다 크면 거기서 for문을 종료함
+                        if(j !== i && (product[j][0] + product[j][1]) <= rest){
+                            rest -= (product[j][0] + product[j][1]); // 상품 가격을 남은 예산에서 뺌.
+                            count++; // 상품 샀음
+                        }
+                    }
+                    answer = Math.max(answer, count); // i가 0일때 산 상품의 최대 개수와 answer을 비교해서 더 큰 값을 저장.
+                }
+                return answer;
+            }
+            
+            let arr=[[6, 6], [2, 2], [4, 3], [4, 5], [10, 3]];
+            console.log(solution(28, arr));
+        </script>
+    </body>
+</html>

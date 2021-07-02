@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(meeting){
+                let answer=0;
+                meeting.sort((a, b)=>{
+                    if(a[1]===b[1]) return a[0]-b[0];
+                    //끝나는 시간이 같으면 시작하는 시간으로 정렬
+                    else return a[1]-b[1]; //끝나는 시간이 다르면 끝나는 시간으로 정렬
+                })
+                let et=0; //끝나는 시간은 일단 0으로 초기화한다.
+                for(let x of meeting){
+                    if(x[0]>=et){ //시작시간이 끝나는 시간보다 크거나 같으면
+                        answer++; // answer에 1을 더하고
+                        et=x[1]; // 끝나는 시간을 재설정한다.
+                    }
+                }
+                return answer;
+            }
+
+            let arr=[[1, 4], [2, 3], [3, 5], [4, 6], [5, 7]];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

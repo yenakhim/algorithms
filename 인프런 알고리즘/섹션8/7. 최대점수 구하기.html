@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(m, ps, pt){         
+                let answer=Number.MIN_SAFE_INTEGER; //최댓값구하는 거니까 최소값으로 세팅
+                let n=ps.length;
+                function DFS(L, sum, time){
+                    if(time>m) return; //시간 제한을 넘으면 종료
+                    if(L===n){ //인덱스가 5가 되면 그때 sum을 answer와 비교
+                        answer=Math.max(answer, sum);
+                    }
+                    else{
+                        DFS(L+1, sum+ps[L], time+pt[L]); //인덱스 L에 있는 문제 풀었을 때
+                        DFS(L+1, sum, time); //안 풀었을 때
+                    }   
+                }
+
+                DFS(0, 0, 0);
+                return answer;
+            }
+
+            let ps=[10, 25, 15, 6, 7]; //문제점수
+            let pt=[5, 12, 8, 3, 4]    //문제푸는데 걸리는 시간
+            console.log(solution(20, ps, pt));
+        </script>
+    </body>
+</html>

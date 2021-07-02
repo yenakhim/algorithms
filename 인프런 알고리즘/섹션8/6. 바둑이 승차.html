@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(c, arr){
+                let answer=Number.MIN_SAFE_INTEGER; //answer는 최댓값구하는 거니까 최소값으로 설정
+                let n=arr.length;
+                function DFS(L, sum){
+                    if(sum>c) return; //sum이 c보다 크면 아래 과정 다 안하고 바로 종료
+                    if(L===n){ //L은 0부터 4까지만, 5가 되면 그때까지의 합을 answer와 비교
+                        answer=Math.max(answer, sum);
+                    }
+                    else{
+                        DFS(L+1, sum+arr[L]); //인덱스 L의 값이 sum에 포함되는 경우
+                        DFS(L+1, sum); //포함 안되는 경우
+                    }                  
+                }
+                DFS(0, 0);
+                return answer;
+            }
+
+            let arr=[81, 58, 42, 33, 61];
+            console.log(solution(259, arr));
+        </script>
+    </body>
+</html>
